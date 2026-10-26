@@ -2,6 +2,10 @@
 {
   "rewrites": [
     {
+      "source": "/_next/static/chunks/app/:path*",
+      "destination": "/js/:path*"
+    },
+    {
       "source": "/_next/static/chunks/:path*",
       "destination": "/js/:path*"
     },
