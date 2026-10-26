@@ -23,6 +23,21 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1648157930145999');
     fbq('track', 'PageView');
+
+    // Track ViewContent on slight scroll
+    (function() {
+      var viewContentSent = false;
+      function onScrollSlightly() {
+        if (!viewContentSent && (window.scrollY > 80 || window.pageYOffset > 80 || (document.documentElement && document.documentElement.scrollTop > 80))) {
+          viewContentSent = true;
+          fbq('track', 'ViewContent');
+          window.removeEventListener('scroll', onScrollSlightly);
+          window.removeEventListener('touchmove', onScrollSlightly);
+        }
+      }
+      window.addEventListener('scroll', onScrollSlightly, { passive: true });
+      window.addEventListener('touchmove', onScrollSlightly, { passive: true });
+    })();
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1648157930145999&ev=PageView&noscript=1"
