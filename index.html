@@ -11,38 +11,53 @@
   a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
   document.head.appendChild(a);
 </script>
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1648157930145999');
-    fbq('track', 'PageView');
+   ```html
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
 
-    // Track ViewContent on slight scroll
-    (function() {
-      var viewContentSent = false;
-      function onScrollSlightly() {
-        if (!viewContentSent && (window.scrollY > 80 || window.pageYOffset > 80 || (document.documentElement && document.documentElement.scrollTop > 80))) {
-          viewContentSent = true;
-          fbq('track', 'ViewContent');
-          window.removeEventListener('scroll', onScrollSlightly);
-          window.removeEventListener('touchmove', onScrollSlightly);
-        }
-      }
-      window.addEventListener('scroll', onScrollSlightly, { passive: true });
-      window.addEventListener('touchmove', onScrollSlightly, { passive: true });
-    })();
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
+fbq('init', '1648157930145999');
+fbq('track', 'PageView');
+
+// Track ViewContent once on slight scroll
+(function() {
+  if (window.__viewContentSent) return;
+
+  function onScrollSlightly() {
+    var scrollPosition = Math.max(
+      window.scrollY || 0,
+      window.pageYOffset || 0,
+      document.documentElement.scrollTop || 0
+    );
+
+    if (!window.__viewContentSent && scrollPosition > 80) {
+      window.__viewContentSent = true;
+      fbq('track', 'ViewContent');
+
+      window.removeEventListener('scroll', onScrollSlightly);
+      window.removeEventListener('touchmove', onScrollSlightly);
+    }
+  }
+
+  window.addEventListener('scroll', onScrollSlightly, { passive: true });
+  window.addEventListener('touchmove', onScrollSlightly, { passive: true });
+})();
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1648157930145999&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+  />
+</noscript>
+<!-- End Meta Pixel Code -->
+    
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" href="fonts/0484562807a97172-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="fonts/3dc379dc9b5dec12-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="fonts/b957ea75a84b6ea7-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="fonts/eafabf029ad39a43-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" as="image" href="images/EUA-COMPLETO.png"><link rel="stylesheet" href="css/28bac68c4538c54b.css" data-precedence="next"><link rel="preload" as="script" fetchpriority="low" href="js/webpack-6a551d6a9f86e296.js"><script src="js/4bd1b696-a25418325034b528.js" async=""></script>
     <script src="js/684-87eb711945f11137.js" async=""></script>
     <script src="js/main-app-9f4f66c0efa5e0b9.js" async=""></script>
